@@ -141,6 +141,7 @@ button, input, select {
   margin-top: 7px;
 }
 
+/* POWER BUTTON */
 .power-wrap {
   position: relative;
   z-index: 2;
@@ -568,12 +569,7 @@ select {
 const DOWNLOAD_URL =
   "https://www.mediafire.com/file/uioqf9n6op8zdfx/VaiperXXIT.zip/file";
 
-/*
-  ใส่เฉพาะ URL Scheme หรือ Universal Link ของ Free Fire
-  ที่ตรวจสอบแล้วว่ารองรับบน iOS เท่านั้น
-  เว้นว่างไว้จนกว่าจะยืนยันได้
-*/
-const FREE_FIRE_URL = "";
+const FREE_FIRE_URL = "freefire://";
 
 let toastTimer = null;
 let powerBusy = false;
@@ -590,7 +586,7 @@ function showToast(message) {
   }, 2500);
 }
 
-/* POWER BUTTON */
+/* POWER BUTTON: CALL FREE FIRE */
 function openFreeFire() {
   if (powerBusy) return;
 
@@ -600,26 +596,22 @@ function openFreeFire() {
 
   if (!button || !label || !message) return;
 
-  if (!FREE_FIRE_URL.trim()) {
-    label.textContent = "GAME LINK NOT SET";
-    message.textContent = "ยังไม่มีลิงก์เปิดเกมที่ยืนยันแล้ว";
-    showToast("ยังไม่มี URL เปิด Free Fire ที่ยืนยันแล้ว");
-    return;
-  }
-
   powerBusy = true;
   button.disabled = true;
-  label.textContent = "OPENING GAME...";
+
+  label.textContent = "OPENING FREE FIRE...";
   message.textContent = "กำลังเรียกเปิด Free Fire";
 
-  // ใช้ URL ที่ผู้พัฒนายืนยันว่ารองรับเท่านั้น
+  showToast("กำลังเรียกเปิด Free Fire");
+
+  // ใช้วิธีเดียวกับโค้ดตัวอย่างที่ผู้ใช้ส่งมา
   window.location.href = FREE_FIRE_URL;
 
   setTimeout(() => {
     powerBusy = false;
     button.disabled = false;
     label.textContent = "TAP TO OPEN GAME";
-  }, 1800);
+  }, 2000);
 }
 
 /* DOWNLOAD */
@@ -630,7 +622,9 @@ function downloadFile() {
 /* UPDATE RANGE */
 function updateValue(input) {
   const key = input.dataset.key;
-  const outputId = "v" + key.charAt(0).toUpperCase() + key.slice(1);
+  const outputId =
+    "v" + key.charAt(0).toUpperCase() + key.slice(1);
+
   const output = document.getElementById(outputId);
 
   if (output) output.textContent = input.value;
@@ -731,7 +725,9 @@ function applyPreset() {
       input.value = value;
 
       const key = input.dataset.key;
-      const outputId = "v" + key.charAt(0).toUpperCase() + key.slice(1);
+      const outputId =
+        "v" + key.charAt(0).toUpperCase() + key.slice(1);
+
       const output = document.getElementById(outputId);
 
       if (output) output.textContent = value;
@@ -770,7 +766,7 @@ function resetSettings() {
   showToast("คืนค่าเริ่มต้นแล้ว");
 }
 
-/* EVENTS */
+/* EVENT LISTENERS */
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("powerButton")
     ?.addEventListener("click", openFreeFire);
