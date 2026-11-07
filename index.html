@@ -141,7 +141,6 @@ button, input, select {
   margin-top: 7px;
 }
 
-/* POWER BUTTON */
 .power-wrap {
   position: relative;
   z-index: 2;
@@ -184,19 +183,16 @@ button, input, select {
   touch-action: manipulation;
   -webkit-appearance: none;
   appearance: none;
-
   width: 116px;
   height: 116px;
   display: grid;
   place-items: center;
-
   border-radius: 50%;
   border: 2px solid #ff3030;
   background: radial-gradient(circle, #4b0808, #160505);
   box-shadow:
     0 0 28px #ff202055,
     inset 0 0 20px #ff202022;
-
   color: white;
   cursor: pointer;
   outline: none;
@@ -450,24 +446,15 @@ select {
     <div class="power-wrap">
       <div class="ring"></div>
 
-      <button
-        class="power"
-        id="powerButton"
-        type="button"
-        aria-label="เปิด Free Fire">
-
+      <button class="power" id="powerButton" type="button" aria-label="เปิด Free Fire">
         <svg viewBox="0 0 24 24">
           <path d="M12 2v10"></path>
           <path d="M5.2 5.2a9.5 9.5 0 1 0 13.6 0"></path>
         </svg>
-
       </button>
     </div>
 
-    <div class="power-label" id="powerLabel">
-      TAP TO OPEN GAME
-    </div>
-
+    <div class="power-label" id="powerLabel">TAP TO OPEN GAME</div>
     <div class="system-message" id="systemMessage">
       กดปุ่ม Power เพื่อเรียกเปิด Free Fire
     </div>
@@ -483,50 +470,32 @@ select {
   <div class="grid">
 
     <div class="option">
-      <div class="option-name">
-        ดูดหัว
-        <small>Aim Assist UI</small>
-      </div>
+      <div class="option-name">ดูดหัว<small>Aim Assist UI</small></div>
       <input class="toggle setting" type="checkbox" data-key="aim">
     </div>
 
     <div class="option">
-      <div class="option-name">
-        ช่วยลากหัว
-        <small>Drag Assist UI</small>
-      </div>
+      <div class="option-name">ช่วยลากหัว<small>Drag Assist UI</small></div>
       <input class="toggle setting" type="checkbox" data-key="drag">
     </div>
 
     <div class="option">
-      <div class="option-name">
-        จอไว
-        <small>Touch Response</small>
-      </div>
+      <div class="option-name">จอไว<small>Touch Response</small></div>
       <input class="toggle setting" type="checkbox" data-key="touch">
     </div>
 
     <div class="option">
-      <div class="option-name">
-        ความสมูท
-        <small>Smooth Display</small>
-      </div>
+      <div class="option-name">ความสมูท<small>Smooth Display</small></div>
       <input class="toggle setting" type="checkbox" data-key="smooth">
     </div>
 
     <div class="option">
-      <div class="option-name">
-        ปรับแต่งเป้า
-        <small>Crosshair UI</small>
-      </div>
+      <div class="option-name">ปรับแต่งเป้า<small>Crosshair UI</small></div>
       <input class="toggle setting" type="checkbox" data-key="crosshair">
     </div>
 
     <div class="option">
-      <div class="option-name">
-        ลดความหน่วง
-        <small>Low Latency UI</small>
-      </div>
+      <div class="option-name">ลดความหน่วง<small>Low Latency UI</small></div>
       <input class="toggle setting" type="checkbox" data-key="latency">
     </div>
 
@@ -537,48 +506,28 @@ select {
   <div class="panel">
 
     <div class="range-row">
-      <div class="range-head">
-        <span>ทั่วไป</span>
-        <span id="vGeneral">95</span>
-      </div>
-      <input type="range" min="0" max="200" value="95"
-        data-key="general" oninput="updateValue(this)">
+      <div class="range-head"><span>ทั่วไป</span><span id="vGeneral">95</span></div>
+      <input type="range" min="0" max="200" value="95" data-key="general" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head">
-        <span>จุดแดง</span>
-        <span id="vRed">90</span>
-      </div>
-      <input type="range" min="0" max="200" value="90"
-        data-key="red" oninput="updateValue(this)">
+      <div class="range-head"><span>จุดแดง</span><span id="vRed">90</span></div>
+      <input type="range" min="0" max="200" value="90" data-key="red" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head">
-        <span>กล้อง 2X</span>
-        <span id="v2x">85</span>
-      </div>
-      <input type="range" min="0" max="200" value="85"
-        data-key="2x" oninput="updateValue(this)">
+      <div class="range-head"><span>กล้อง 2X</span><span id="v2x">85</span></div>
+      <input type="range" min="0" max="200" value="85" data-key="2x" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head">
-        <span>กล้อง 4X</span>
-        <span id="v4x">80</span>
-      </div>
-      <input type="range" min="0" max="200" value="80"
-        data-key="4x" oninput="updateValue(this)">
+      <div class="range-head"><span>กล้อง 4X</span><span id="v4x">80</span></div>
+      <input type="range" min="0" max="200" value="80" data-key="4x" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head">
-        <span>สไนเปอร์</span>
-        <span id="vSniper">70</span>
-      </div>
-      <input type="range" min="0" max="200" value="70"
-        data-key="sniper" oninput="updateValue(this)">
+      <div class="range-head"><span>สไนเปอร์</span><span id="vSniper">70</span></div>
+      <input type="range" min="0" max="200" value="70" data-key="sniper" oninput="updateValue(this)">
     </div>
 
   </div>
@@ -587,17 +536,10 @@ select {
 
   <div class="panel">
 
-    <div class="range-head">
-      <span>FOV</span>
-      <span id="vFov">90</span>
-    </div>
+    <div class="range-head"><span>FOV</span><span id="vFov">90</span></div>
+    <input type="range" min="10" max="180" value="90" data-key="fov" oninput="updateValue(this)">
 
-    <input type="range" min="10" max="180" value="90"
-      data-key="fov" oninput="updateValue(this)">
-
-    <div style="margin-top:18px;font-size:13px;">
-      เลือก Preset
-    </div>
+    <div style="margin-top:18px;font-size:13px;">เลือก Preset</div>
 
     <select id="preset">
       <option value="balanced">Balanced</option>
@@ -606,13 +548,8 @@ select {
       <option value="custom">Custom</option>
     </select>
 
-    <button class="save-btn" id="saveButton" type="button">
-      บันทึกการตั้งค่า
-    </button>
-
-    <button class="save-btn" id="resetButton" type="button">
-      คืนค่าเริ่มต้น
-    </button>
+    <button class="save-btn" id="saveButton" type="button">บันทึกการตั้งค่า</button>
+    <button class="save-btn" id="resetButton" type="button">คืนค่าเริ่มต้น</button>
 
   </div>
 
@@ -632,8 +569,9 @@ const DOWNLOAD_URL =
   "https://www.mediafire.com/file/uioqf9n6op8zdfx/VaiperXXIT.zip/file";
 
 /*
-  ยังไม่ใส่ URL Scheme ของ Free Fire เนื่องจากยังไม่มี
-  Scheme ที่ตรวจสอบแล้วว่ารองรับการเปิดเกมบน iPhone
+  ใส่เฉพาะ URL Scheme หรือ Universal Link ของ Free Fire
+  ที่ตรวจสอบแล้วว่ารองรับบน iOS เท่านั้น
+  เว้นว่างไว้จนกว่าจะยืนยันได้
 */
 const FREE_FIRE_URL = "";
 
@@ -642,7 +580,6 @@ let powerBusy = false;
 
 function showToast(message) {
   const toastElement = document.getElementById("toast");
-
   toastElement.textContent = message;
   toastElement.classList.add("show");
 
@@ -661,30 +598,28 @@ function openFreeFire() {
   const label = document.getElementById("powerLabel");
   const message = document.getElementById("systemMessage");
 
+  if (!button || !label || !message) return;
+
+  if (!FREE_FIRE_URL.trim()) {
+    label.textContent = "GAME LINK NOT SET";
+    message.textContent = "ยังไม่มีลิงก์เปิดเกมที่ยืนยันแล้ว";
+    showToast("ยังไม่มี URL เปิด Free Fire ที่ยืนยันแล้ว");
+    return;
+  }
+
   powerBusy = true;
   button.disabled = true;
-  button.classList.add("loading");
+  label.textContent = "OPENING GAME...";
+  message.textContent = "กำลังเรียกเปิด Free Fire";
 
-  label.textContent = "INITIALIZING...";
-  message.textContent = "กำลังเตรียมระบบ";
+  // ใช้ URL ที่ผู้พัฒนายืนยันว่ารองรับเท่านั้น
+  window.location.href = FREE_FIRE_URL;
 
   setTimeout(() => {
-    button.disabled = false;
-    button.classList.remove("loading");
     powerBusy = false;
-
-    if (FREE_FIRE_URL.trim()) {
-      label.textContent = "OPENING FREE FIRE";
-      message.textContent = "กำลังเรียกเปิดเกม";
-
-      window.location.href = FREE_FIRE_URL;
-    } else {
-      label.textContent = "SYSTEM READY";
-      message.textContent = "ปุ่ม Power ทำงานเรียบร้อยแล้ว";
-
-      showToast("ปุ่ม Power ใช้งานได้ แต่ยังไม่มีลิงก์เปิดเกมที่ยืนยันแล้ว");
-    }
-  }, 1000);
+    button.disabled = false;
+    label.textContent = "TAP TO OPEN GAME";
+  }, 1800);
 }
 
 /* DOWNLOAD */
@@ -695,15 +630,10 @@ function downloadFile() {
 /* UPDATE RANGE */
 function updateValue(input) {
   const key = input.dataset.key;
-
-  const outputId =
-    "v" + key.charAt(0).toUpperCase() + key.slice(1);
-
+  const outputId = "v" + key.charAt(0).toUpperCase() + key.slice(1);
   const output = document.getElementById(outputId);
 
-  if (output) {
-    output.textContent = input.value;
-  }
+  if (output) output.textContent = input.value;
 
   const preset = document.getElementById("preset");
   if (preset) preset.value = "custom";
@@ -801,9 +731,7 @@ function applyPreset() {
       input.value = value;
 
       const key = input.dataset.key;
-      const outputId =
-        "v" + key.charAt(0).toUpperCase() + key.slice(1);
-
+      const outputId = "v" + key.charAt(0).toUpperCase() + key.slice(1);
       const output = document.getElementById(outputId);
 
       if (output) output.textContent = value;
@@ -842,38 +770,27 @@ function resetSettings() {
   showToast("คืนค่าเริ่มต้นแล้ว");
 }
 
-/* EVENT LISTENERS */
+/* EVENTS */
 document.addEventListener("DOMContentLoaded", () => {
-  const powerButton = document.getElementById("powerButton");
-  const downloadButton = document.getElementById("downloadButton");
-  const saveButton = document.getElementById("saveButton");
-  const resetButton = document.getElementById("resetButton");
-  const presetSelect = document.getElementById("preset");
+  document.getElementById("powerButton")
+    ?.addEventListener("click", openFreeFire);
 
-  if (powerButton) {
-    powerButton.addEventListener("click", openFreeFire);
-  }
+  document.getElementById("downloadButton")
+    ?.addEventListener("click", downloadFile);
 
-  if (downloadButton) {
-    downloadButton.addEventListener("click", downloadFile);
-  }
+  document.getElementById("saveButton")
+    ?.addEventListener("click", saveSettings);
 
-  if (saveButton) {
-    saveButton.addEventListener("click", saveSettings);
-  }
+  document.getElementById("resetButton")
+    ?.addEventListener("click", resetSettings);
 
-  if (resetButton) {
-    resetButton.addEventListener("click", resetSettings);
-  }
-
-  if (presetSelect) {
-    presetSelect.addEventListener("change", applyPreset);
-  }
+  document.getElementById("preset")
+    ?.addEventListener("change", applyPreset);
 
   loadSettings();
 });
 
-/* PWA SERVICE WORKER */
+/* SERVICE WORKER */
 if ("serviceWorker" in navigator &&
     location.protocol === "https:") {
   window.addEventListener("load", () => {
