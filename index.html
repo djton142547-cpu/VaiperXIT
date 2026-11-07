@@ -4,13 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+<title>VaiperXIT</title>
+
 <meta name="theme-color" content="#090909">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="VaiperXIT">
 <meta name="mobile-web-app-capable" content="yes">
-
-<title>VaiperXIT</title>
 
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="https://i.postimg.cc/SN9c93Jw/8DB29C03-C8C3-4A7D-B441-C4FF8F375897.png">
@@ -20,15 +21,19 @@
 
 :root {
   --red: #ff2020;
-  --dark-red: #9e0000;
+  --dark-red: #a00000;
   --bg: #080808;
   --card: #151515;
-  --muted: #858585;
 }
 
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
 }
 
 body {
@@ -50,8 +55,10 @@ button, input, select {
   width: 100%;
   max-width: 480px;
   margin: auto;
-  padding: max(22px, env(safe-area-inset-top)) 16px
-           max(35px, env(safe-area-inset-bottom));
+  padding:
+    max(22px, env(safe-area-inset-top))
+    16px
+    max(35px, env(safe-area-inset-bottom));
 }
 
 .header {
@@ -134,8 +141,10 @@ button, input, select {
   margin-top: 7px;
 }
 
+/* POWER BUTTON */
 .power-wrap {
   position: relative;
+  z-index: 2;
   display: grid;
   place-items: center;
   width: 160px;
@@ -146,6 +155,7 @@ button, input, select {
 .ring {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   border: 2px solid transparent;
   border-top-color: var(--red);
   border-bottom-color: #7e0000;
@@ -160,6 +170,7 @@ button, input, select {
   inset: 10px;
   border: 1px dashed #ff303088;
   border-radius: 50%;
+  pointer-events: none;
 }
 
 @keyframes rotate {
@@ -167,21 +178,38 @@ button, input, select {
 }
 
 .power {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  appearance: none;
+
   width: 116px;
   height: 116px;
   display: grid;
   place-items: center;
+
   border-radius: 50%;
   border: 2px solid #ff3030;
   background: radial-gradient(circle, #4b0808, #160505);
-  box-shadow: 0 0 28px #ff202055, inset 0 0 20px #ff202022;
+  box-shadow:
+    0 0 28px #ff202055,
+    inset 0 0 20px #ff202022;
+
   color: white;
   cursor: pointer;
+  outline: none;
   transition: transform .2s, opacity .2s;
 }
 
 .power:active {
   transform: scale(.93);
+}
+
+.power:disabled {
+  opacity: .6;
+  cursor: wait;
 }
 
 .power svg {
@@ -194,15 +222,6 @@ button, input, select {
   stroke-linejoin: round;
 }
 
-.power.loading {
-  opacity: .6;
-  pointer-events: none;
-}
-
-.power.loading + .ring {
-  animation-duration: .5s;
-}
-
 .power-label {
   font-size: 12px;
   color: #ddd;
@@ -213,6 +232,25 @@ button, input, select {
   color: #888;
   font-size: 11px;
   margin-top: 5px;
+}
+
+.main-btn {
+  width: 100%;
+  display: block;
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(100deg, #242424, #3b3b3b);
+  border: 1px solid #9d2020;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 20px #0008;
+  touch-action: manipulation;
+}
+
+.main-btn:active {
+  transform: scale(.98);
 }
 
 .section-title {
@@ -231,25 +269,6 @@ button, input, select {
   background: var(--red);
   border-radius: 5px;
   box-shadow: 0 0 10px var(--red);
-}
-
-.main-btn {
-  width: 100%;
-  display: block;
-  margin-top: 15px;
-  padding: 14px;
-  border: 0;
-  border-radius: 12px;
-  color: white;
-  background: linear-gradient(100deg, #242424, #3b3b3b);
-  border: 1px solid #9d2020;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 5px 20px #0008;
-}
-
-.main-btn:active {
-  transform: scale(.98);
 }
 
 .grid {
@@ -402,7 +421,10 @@ select {
 }
 
 @media (max-width: 360px) {
-  .container { padding-left: 12px; padding-right: 12px; }
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
   .logo { font-size: 19px; }
   .hero h1 { font-size: 21px; }
 }
@@ -410,118 +432,188 @@ select {
 </head>
 
 <body>
+
 <div class="container">
 
   <header class="header">
     <div class="logo">VAIPER<span>X</span></div>
-    <div class="status"><i class="status-dot"></i>SYSTEM ONLINE</div>
+    <div class="status">
+      <i class="status-dot"></i>SYSTEM ONLINE
+    </div>
   </header>
 
   <section class="hero">
+
     <h1>VAIPER<span>X</span>IT</h1>
     <div class="subtitle">PREMIUM MOBILE PANEL</div>
 
     <div class="power-wrap">
       <div class="ring"></div>
 
-      <button class="power" id="powerButton"
-        onclick="openFreeFire()" aria-label="เปิด Free Fire">
+      <button
+        class="power"
+        id="powerButton"
+        type="button"
+        aria-label="เปิด Free Fire">
+
         <svg viewBox="0 0 24 24">
           <path d="M12 2v10"></path>
           <path d="M5.2 5.2a9.5 9.5 0 1 0 13.6 0"></path>
         </svg>
+
       </button>
     </div>
 
-    <div class="power-label" id="powerLabel">TAP TO OPEN GAME</div>
+    <div class="power-label" id="powerLabel">
+      TAP TO OPEN GAME
+    </div>
+
     <div class="system-message" id="systemMessage">
       กดปุ่ม Power เพื่อเรียกเปิด Free Fire
     </div>
+
   </section>
 
-  <button class="main-btn" onclick="downloadFile()">
+  <button class="main-btn" id="downloadButton" type="button">
     ⇩ ดาวน์โหลดไฟล์ VaiperXXIT
   </button>
 
   <div class="section-title">ฟังก์ชันหลัก</div>
 
   <div class="grid">
+
     <div class="option">
-      <div class="option-name">ดูดหัว<small>Aim Assist UI</small></div>
+      <div class="option-name">
+        ดูดหัว
+        <small>Aim Assist UI</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="aim">
     </div>
 
     <div class="option">
-      <div class="option-name">ช่วยลากหัว<small>Drag Assist UI</small></div>
+      <div class="option-name">
+        ช่วยลากหัว
+        <small>Drag Assist UI</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="drag">
     </div>
 
     <div class="option">
-      <div class="option-name">จอไว<small>Touch Response</small></div>
+      <div class="option-name">
+        จอไว
+        <small>Touch Response</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="touch">
     </div>
 
     <div class="option">
-      <div class="option-name">ความสมูท<small>Smooth Display</small></div>
+      <div class="option-name">
+        ความสมูท
+        <small>Smooth Display</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="smooth">
     </div>
 
     <div class="option">
-      <div class="option-name">ปรับแต่งเป้า<small>Crosshair UI</small></div>
+      <div class="option-name">
+        ปรับแต่งเป้า
+        <small>Crosshair UI</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="crosshair">
     </div>
 
     <div class="option">
-      <div class="option-name">ลดความหน่วง<small>Low Latency UI</small></div>
+      <div class="option-name">
+        ลดความหน่วง
+        <small>Low Latency UI</small>
+      </div>
       <input class="toggle setting" type="checkbox" data-key="latency">
     </div>
+
   </div>
 
   <div class="section-title">Sensitivity Settings</div>
 
   <div class="panel">
+
     <div class="range-row">
-      <div class="range-head"><span>ทั่วไป</span><span id="vGeneral">95</span></div>
-      <input type="range" min="0" max="200" value="95" data-key="general" oninput="updateValue(this)">
+      <div class="range-head">
+        <span>ทั่วไป</span>
+        <span id="vGeneral">95</span>
+      </div>
+      <input type="range" min="0" max="200" value="95"
+        data-key="general" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head"><span>จุดแดง</span><span id="vRed">90</span></div>
-      <input type="range" min="0" max="200" value="90" data-key="red" oninput="updateValue(this)">
+      <div class="range-head">
+        <span>จุดแดง</span>
+        <span id="vRed">90</span>
+      </div>
+      <input type="range" min="0" max="200" value="90"
+        data-key="red" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head"><span>กล้อง 2X</span><span id="v2x">85</span></div>
-      <input type="range" min="0" max="200" value="85" data-key="2x" oninput="updateValue(this)">
+      <div class="range-head">
+        <span>กล้อง 2X</span>
+        <span id="v2x">85</span>
+      </div>
+      <input type="range" min="0" max="200" value="85"
+        data-key="2x" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head"><span>กล้อง 4X</span><span id="v4x">80</span></div>
-      <input type="range" min="0" max="200" value="80" data-key="4x" oninput="updateValue(this)">
+      <div class="range-head">
+        <span>กล้อง 4X</span>
+        <span id="v4x">80</span>
+      </div>
+      <input type="range" min="0" max="200" value="80"
+        data-key="4x" oninput="updateValue(this)">
     </div>
 
     <div class="range-row">
-      <div class="range-head"><span>สไนเปอร์</span><span id="vSniper">70</span></div>
-      <input type="range" min="0" max="200" value="70" data-key="sniper" oninput="updateValue(this)">
+      <div class="range-head">
+        <span>สไนเปอร์</span>
+        <span id="vSniper">70</span>
+      </div>
+      <input type="range" min="0" max="200" value="70"
+        data-key="sniper" oninput="updateValue(this)">
     </div>
+
   </div>
 
   <div class="section-title">ปรับแต่งเพิ่มเติม</div>
 
   <div class="panel">
-    <div class="range-head"><span>FOV</span><span id="vFov">90</span></div>
-    <input type="range" min="10" max="180" value="90" data-key="fov" oninput="updateValue(this)">
 
-    <div style="margin-top:18px;font-size:13px;">เลือก Preset</div>
-    <select id="preset" onchange="applyPreset()">
+    <div class="range-head">
+      <span>FOV</span>
+      <span id="vFov">90</span>
+    </div>
+
+    <input type="range" min="10" max="180" value="90"
+      data-key="fov" oninput="updateValue(this)">
+
+    <div style="margin-top:18px;font-size:13px;">
+      เลือก Preset
+    </div>
+
+    <select id="preset">
       <option value="balanced">Balanced</option>
       <option value="fast">Fast</option>
       <option value="smooth">Smooth</option>
       <option value="custom">Custom</option>
     </select>
 
-    <button class="save-btn" onclick="saveSettings()">บันทึกการตั้งค่า</button>
-    <button class="save-btn" onclick="resetSettings()">คืนค่าเริ่มต้น</button>
+    <button class="save-btn" id="saveButton" type="button">
+      บันทึกการตั้งค่า
+    </button>
+
+    <button class="save-btn" id="resetButton" type="button">
+      คืนค่าเริ่มต้น
+    </button>
+
   </div>
 
   <div class="footer">
@@ -534,108 +626,128 @@ select {
 <div class="toast" id="toast"></div>
 
 <script>
+"use strict";
+
 const DOWNLOAD_URL =
   "https://www.mediafire.com/file/uioqf9n6op8zdfx/VaiperXXIT.zip/file";
 
 /*
-  Free Fire:
-  ใช้ URL Scheme ของแอปที่ตรวจสอบแล้วเท่านั้น
-  เว้นว่างไว้จนกว่าจะมี Scheme ที่ยืนยันว่าใช้งานได้
+  ยังไม่ใส่ URL Scheme ของ Free Fire เนื่องจากยังไม่มี
+  Scheme ที่ตรวจสอบแล้วว่ารองรับการเปิดเกมบน iPhone
 */
 const FREE_FIRE_URL = "";
 
-let toastTimer;
+let toastTimer = null;
+let powerBusy = false;
 
-function toast(message) {
-  const el = document.getElementById("toast");
-  el.textContent = message;
-  el.classList.add("show");
+function showToast(message) {
+  const toastElement = document.getElementById("toast");
+
+  toastElement.textContent = message;
+  toastElement.classList.add("show");
 
   clearTimeout(toastTimer);
+
   toastTimer = setTimeout(() => {
-    el.classList.remove("show");
+    toastElement.classList.remove("show");
   }, 2500);
 }
 
-function downloadFile() {
-  window.location.href = DOWNLOAD_URL;
-}
-
+/* POWER BUTTON */
 function openFreeFire() {
+  if (powerBusy) return;
+
   const button = document.getElementById("powerButton");
   const label = document.getElementById("powerLabel");
   const message = document.getElementById("systemMessage");
 
-  if (button.classList.contains("loading")) return;
-
-  if (!FREE_FIRE_URL.trim()) {
-    toast("ยังไม่มี URL Scheme ที่ยืนยันสำหรับ Free Fire");
-    label.textContent = "GAME LINK NOT VERIFIED";
-    message.textContent = "ไม่สามารถเรียกเปิดเกมโดยใช้ลิงก์ที่ยังไม่ยืนยันได้";
-    return;
-  }
-
+  powerBusy = true;
+  button.disabled = true;
   button.classList.add("loading");
-  label.textContent = "OPENING FREE FIRE...";
-  message.textContent = "กำลังเรียกเปิดเกม";
 
-  // เรียกแอปผ่าน URL Scheme ที่ตรวจสอบแล้ว
-  window.location.href = FREE_FIRE_URL;
+  label.textContent = "INITIALIZING...";
+  message.textContent = "กำลังเตรียมระบบ";
 
   setTimeout(() => {
+    button.disabled = false;
     button.classList.remove("loading");
-    label.textContent = "TAP TO OPEN GAME";
-    message.textContent = "หากเกมไม่เปิด กรุณาตรวจสอบลิงก์";
-  }, 2500);
+    powerBusy = false;
+
+    if (FREE_FIRE_URL.trim()) {
+      label.textContent = "OPENING FREE FIRE";
+      message.textContent = "กำลังเรียกเปิดเกม";
+
+      window.location.href = FREE_FIRE_URL;
+    } else {
+      label.textContent = "SYSTEM READY";
+      message.textContent = "ปุ่ม Power ทำงานเรียบร้อยแล้ว";
+
+      showToast("ปุ่ม Power ใช้งานได้ แต่ยังไม่มีลิงก์เปิดเกมที่ยืนยันแล้ว");
+    }
+  }, 1000);
 }
 
+/* DOWNLOAD */
+function downloadFile() {
+  window.location.href = DOWNLOAD_URL;
+}
+
+/* UPDATE RANGE */
 function updateValue(input) {
   const key = input.dataset.key;
-  const id = "v" + key.charAt(0).toUpperCase() + key.slice(1);
-  const output = document.getElementById(id);
 
-  if (output) output.textContent = input.value;
+  const outputId =
+    "v" + key.charAt(0).toUpperCase() + key.slice(1);
 
-  document.getElementById("preset").value = "custom";
+  const output = document.getElementById(outputId);
+
+  if (output) {
+    output.textContent = input.value;
+  }
+
+  const preset = document.getElementById("preset");
+  if (preset) preset.value = "custom";
 }
 
+/* SAVE */
 function saveSettings() {
   const data = {};
 
-  document.querySelectorAll(".setting").forEach(el => {
-    data[el.dataset.key] = el.checked;
+  document.querySelectorAll(".setting").forEach(input => {
+    data[input.dataset.key] = input.checked;
   });
 
-  document.querySelectorAll('input[type="range"]').forEach(el => {
-    data[el.dataset.key] = el.value;
+  document.querySelectorAll('input[type="range"]').forEach(input => {
+    data[input.dataset.key] = input.value;
   });
 
   data.preset = document.getElementById("preset").value;
 
   try {
     localStorage.setItem("vaiperxSettings", JSON.stringify(data));
-    toast("บันทึกการตั้งค่าเรียบร้อยแล้ว");
+    showToast("บันทึกการตั้งค่าเรียบร้อยแล้ว");
   } catch (error) {
-    toast("อุปกรณ์ไม่อนุญาตให้บันทึกข้อมูล");
+    showToast("ไม่สามารถบันทึกข้อมูลได้");
   }
 }
 
+/* LOAD */
 function loadSettings() {
   try {
     const data = JSON.parse(
       localStorage.getItem("vaiperxSettings") || "{}"
     );
 
-    document.querySelectorAll(".setting").forEach(el => {
-      if (data[el.dataset.key] !== undefined) {
-        el.checked = data[el.dataset.key];
+    document.querySelectorAll(".setting").forEach(input => {
+      if (data[input.dataset.key] !== undefined) {
+        input.checked = data[input.dataset.key];
       }
     });
 
-    document.querySelectorAll('input[type="range"]').forEach(el => {
-      if (data[el.dataset.key] !== undefined) {
-        el.value = data[el.dataset.key];
-        updateValue(el);
+    document.querySelectorAll('input[type="range"]').forEach(input => {
+      if (data[input.dataset.key] !== undefined) {
+        input.value = data[input.dataset.key];
+        updateValue(input);
       }
     });
 
@@ -643,56 +755,82 @@ function loadSettings() {
       document.getElementById("preset").value = data.preset;
     }
   } catch (error) {
-    console.log("Cannot load saved settings");
+    console.log("Settings could not be loaded");
   }
 }
 
+/* PRESET */
 function applyPreset() {
   const preset = document.getElementById("preset").value;
 
   const presets = {
     balanced: {
-      general: 95, red: 90, "2x": 85,
-      "4x": 80, sniper: 70, fov: 90
+      general: 95,
+      red: 90,
+      "2x": 85,
+      "4x": 80,
+      sniper: 70,
+      fov: 90
     },
+
     fast: {
-      general: 120, red: 115, "2x": 110,
-      "4x": 100, sniper: 90, fov: 120
+      general: 120,
+      red: 115,
+      "2x": 110,
+      "4x": 100,
+      sniper: 90,
+      fov: 120
     },
+
     smooth: {
-      general: 80, red: 75, "2x": 70,
-      "4x": 65, sniper: 60, fov: 75
+      general: 80,
+      red: 75,
+      "2x": 70,
+      "4x": 65,
+      sniper: 60,
+      fov: 75
     }
   };
 
   if (!presets[preset]) return;
 
-  document.querySelectorAll('input[type="range"]').forEach(el => {
-    const value = presets[preset][el.dataset.key];
+  document.querySelectorAll('input[type="range"]').forEach(input => {
+    const value = presets[preset][input.dataset.key];
 
     if (value !== undefined) {
-      el.value = value;
-      updateValue(el);
+      input.value = value;
+
+      const key = input.dataset.key;
+      const outputId =
+        "v" + key.charAt(0).toUpperCase() + key.slice(1);
+
+      const output = document.getElementById(outputId);
+
+      if (output) output.textContent = value;
     }
   });
 
-  document.getElementById("preset").value = preset;
-  toast("เลือก Preset: " + preset);
+  showToast("เลือก Preset: " + preset);
 }
 
+/* RESET */
 function resetSettings() {
   const defaults = {
-    general: 95, red: 90, "2x": 85,
-    "4x": 80, sniper: 70, fov: 90
+    general: 95,
+    red: 90,
+    "2x": 85,
+    "4x": 80,
+    sniper: 70,
+    fov: 90
   };
 
-  document.querySelectorAll(".setting").forEach(el => {
-    el.checked = false;
+  document.querySelectorAll(".setting").forEach(input => {
+    input.checked = false;
   });
 
-  document.querySelectorAll('input[type="range"]').forEach(el => {
-    el.value = defaults[el.dataset.key];
-    updateValue(el);
+  document.querySelectorAll('input[type="range"]').forEach(input => {
+    input.value = defaults[input.dataset.key];
+    updateValue(input);
   });
 
   document.getElementById("preset").value = "balanced";
@@ -701,18 +839,49 @@ function resetSettings() {
     localStorage.removeItem("vaiperxSettings");
   } catch (error) {}
 
-  toast("คืนค่าเริ่มต้นแล้ว");
+  showToast("คืนค่าเริ่มต้นแล้ว");
 }
 
-// ลงทะเบียน Service Worker สำหรับ PWA
-if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+/* EVENT LISTENERS */
+document.addEventListener("DOMContentLoaded", () => {
+  const powerButton = document.getElementById("powerButton");
+  const downloadButton = document.getElementById("downloadButton");
+  const saveButton = document.getElementById("saveButton");
+  const resetButton = document.getElementById("resetButton");
+  const presetSelect = document.getElementById("preset");
+
+  if (powerButton) {
+    powerButton.addEventListener("click", openFreeFire);
+  }
+
+  if (downloadButton) {
+    downloadButton.addEventListener("click", downloadFile);
+  }
+
+  if (saveButton) {
+    saveButton.addEventListener("click", saveSettings);
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener("click", resetSettings);
+  }
+
+  if (presetSelect) {
+    presetSelect.addEventListener("change", applyPreset);
+  }
+
+  loadSettings();
+});
+
+/* PWA SERVICE WORKER */
+if ("serviceWorker" in navigator &&
+    location.protocol === "https:") {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js")
-      .catch(error => console.log("Service Worker:", error));
+      .catch(error => console.log("SW Error:", error));
   });
 }
-
-loadSettings();
 </script>
+
 </body>
 </html>
